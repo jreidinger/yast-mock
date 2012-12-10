@@ -27,6 +27,7 @@ bool Y2CCMock::isServerCreator() const
 Y2Component* Y2CCMock::provideNamespace(const char* name)
 {
   if (strcmp (name, "Mock") == 0){
+    y2milestone ("DEBUG: Using mock namespace");
     return Y2MockComponent::instance ();
   } else {
     return NULL;

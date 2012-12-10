@@ -5,9 +5,14 @@
 #include <ycp/YCPVoid.h>
 #include "log.h"
 
+#include "StubFunction.h"
+
 MockModule::MockModule()
     : Y2Namespace()
 {
+  createTable();
+  enterSymbol(new SymbolEntry(this, 0, "stub", SymbolEntry::c_function,
+                     Type::Function(Type::Boolean)));
 }
 
 MockModule::~MockModule()
@@ -16,6 +21,8 @@ MockModule::~MockModule()
 
 Y2Function* MockModule::createFunctionCall (const string name, constFunctionTypePtr type)
 {
+  if (name == "stub")
+    return new StubFunction();
   y2error ("No such function %s", name.c_str ());
   return NULL;
 }
