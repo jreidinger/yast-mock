@@ -20,6 +20,10 @@ libpy2Mock_la_SOURCES =				\
 	Y2CCMock.cc Y2CCMock.h			\
 	MockModule.cc MockModule.h		\
 	StubFunction.cc StubFunction.h		\
+	StubTracker.cc StubTracker.h		\
+	ProxyComponent.cc ProxyComponent.h		\
+	ProxyModule.cc ProxyModule.h		\
+	ProxyFunction.h	ProxyFunction.cc \
 	log.h
 
 

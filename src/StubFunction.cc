@@ -1,4 +1,5 @@
 #include "StubFunction.h"
+#include "StubTracker.h"
 #include "log.h"
 
 #include <ycp/YCPBoolean.h>
@@ -71,5 +72,15 @@ bool StubFunction::finishParameters()
 
 YCPValue StubFunction::evaluateCall()
 {
+  size_t ns_delim_pos = method.find("::");
+  if (ns_delim_pos == string::npos)
+  {
+    y2error ("Stub call missing namespace");
+    return YCPBoolean(false);
+  }
+
+  string ns = method.substr(0,ns_delim_pos);
+  string call = method.substr(ns_delim_pos+2);
+  StubTracker::instance()->stubMethod(ns,call, return_value );
   return YCPBoolean(true);
 }

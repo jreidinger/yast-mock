@@ -28,6 +28,8 @@ private:
   string method;
   YCPValue return_value;
   unsigned assigned_params;
+
+  bool stubCall(const string& ns_name, const string& call);
 };
 
 #endif
